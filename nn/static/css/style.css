@@ -1,0 +1,16 @@
+.p {
+    padding: 0 16px;
+    margin-top: 8px;
+}
+.suggestion-item {
+    cursor: pointer;
+    margin: 8px;
+    padding: 8px 16px;
+    border-left: 1px dashed black;
+    border-right: 1px dashed black;
+    display: inline-block;
+    transition: 250ms all;
+}
+.suggestion-item:hover {
+    background-color: #ccc;
+}

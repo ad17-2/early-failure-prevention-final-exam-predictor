@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    {% if error %}
+    <div class="container">
+        <div class="alert alert-danger">
+            error: {{ error }}
+        </div>
+    </div>
+    {% endif %}
+    <br>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data" class="form">
+            <div class="form-group">
+                <input type="file" class="form-control" id="student-score" name="file"> <br><br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+        {% if show_prediction %}
+        <table class="table" id="result-table">
+            <thead>
+                <tr>
+                    <th>NIM</th>
+                    <th>NAME</th>
+                    <th>Chance</th>
+                    <th>Verdict</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for i in range(len) %}
+            <tr class="bg-{% if Predictions[i] > 0.5 %}success{% else %}danger{% endif %}">
+                <td>{{nims[i]}}</td>
+                <td>{{nama[i]}}</td>
+                <td>{{(Predictions[i] * 100)}}</td>
+                {% if Predictions[i] > 0.5 %}
+                    <td>Passed</td>
+                {% else %}
+                    <td>Need to be Monitored</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#result-table').DataTable();
+        });
+    </script>
+
+</body>
+</html>
