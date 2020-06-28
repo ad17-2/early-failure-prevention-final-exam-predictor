@@ -21,7 +21,7 @@ from sklearn.model_selection import StratifiedKFold
 
 names = ['avg_asg_1','avg_asg_2','avg_asg_3','avg_asg_4','final_status']
 
-dataset = pandas.read_csv('data_clean\dataset_v2.csv',names = names , usecols=[0,1,2,3,4])
+dataset = pandas.read_csv('/mnt/d/early-failure-prevention/early-failure-prevention-final-exam-predictor/knn/data_clean/dataset_v2.csv',names = names , usecols=[0,1,2,3,4])
 
 data_validation_size = 0.20
 dataset_array_splice = dataset.values
@@ -137,7 +137,7 @@ for name, model in models:
     msg = "% s: % f (% f)" % (name, cv_results.mean() * 100, cv_results.std() * 100) 
     print(msg) 
 
-from sklearn.externals import joblib
+import pickle
 
 filename = 'finalized_model.sav'
-joblib.dump(knn,filename)
+pickle.dump(knn,open(filename,'wb'))

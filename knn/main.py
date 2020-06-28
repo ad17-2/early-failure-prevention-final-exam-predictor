@@ -1,4 +1,4 @@
-from sklearn.externals import joblib
+import pickle
 import numpy as np
 import pandas
 from sklearn import preprocessing as pre
@@ -7,7 +7,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 filename = 'finalized_model.sav'
 
-loadmodel = joblib.load(filename)
+loadmodel = pickle.load(open(filename,'rb'))
 
 from flask import Flask, request, jsonify , render_template
 import flask_excel as excel
