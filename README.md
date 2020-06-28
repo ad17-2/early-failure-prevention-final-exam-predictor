@@ -34,3 +34,4 @@ We evaluate the model using Cross Validation Technique with these picture as the
 ## Testing and Serve the Model
 After we do evaluation, we test and serve the model using Flask, where user can upload Excel containing student score and the web will show the result,
 which student will pass the Final Exam or needs to be monitored.
+![demo](https://github.com/ad17-2/early-failure-prevention-final-exam-predictor/blob/master/gif.gif)
